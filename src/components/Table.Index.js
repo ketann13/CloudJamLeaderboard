@@ -12,6 +12,35 @@ function TableIndex() {
   const [error, setError] = useState(null);
   const [csvHeaders, setCsvHeaders] = useState([]);
 
+  // Sorting function: Redemption Status (Yes first) → Total Score (DESC) → Original CSV order
+  const sortLeaderboard = (dataToSort) => {
+    return dataToSort
+      .map((participant, originalIndex) => ({
+        ...participant,
+        _originalIndex: originalIndex, // Preserve original CSV position
+        _totalScore: 
+          (parseInt(participant["# of Skill Badges Completed"]) || 0) + 
+          (parseInt(participant["# of Arcade Games Completed"]) || 0)
+      }))
+      .sort((a, b) => {
+        // 1. Primary Sort: Redemption Status (Yes first)
+        const statusA = a["Access Code Redemption Status"] === "Yes" ? 0 : 1;
+        const statusB = b["Access Code Redemption Status"] === "Yes" ? 0 : 1;
+        
+        if (statusA !== statusB) {
+          return statusA - statusB; // Yes (0) comes before No (1)
+        }
+        
+        // 2. Secondary Sort: Total Score (Higher = Better = Top)
+        if (b._totalScore !== a._totalScore) {
+          return b._totalScore - a._totalScore; // Descending order
+        }
+        
+        // 3. Tertiary Sort: Original CSV position (Earlier row wins)
+        return a._originalIndex - b._originalIndex;
+      });
+  };
+
   // Fetch data from API
   useEffect(() => {
     const fetchData = async () => {
@@ -26,8 +55,11 @@ function TableIndex() {
         const result = await response.json();
         const jsonData = result.data || result; // Support both formats
         
-        setData(jsonData);
-        setParticipationdata(jsonData);
+        // Sort the data before setting state
+        const sortedData = sortLeaderboard(jsonData);
+        
+        setData(sortedData);
+        setParticipationdata(sortedData);
         
         // Store CSV headers if available
         if (result.headers) {
@@ -35,7 +67,7 @@ function TableIndex() {
         }
         
         // Calculate eligibility using config
-        const eligible = jsonData.filter(
+        const eligible = sortedData.filter(
           (ele) => ele[ELIGIBILITY_CONFIG.field] === ELIGIBILITY_CONFIG.eligibleValue
         ).length;
         setEligibleforSwags(eligible);
@@ -61,7 +93,7 @@ function TableIndex() {
       return;
     }
     
-    const newArr = data.filter((participant) => {
+    const filteredArr = data.filter((participant) => {
       // Search across multiple fields
       const searchFields = [
         participant["User Name"],
@@ -74,7 +106,9 @@ function TableIndex() {
       );
     });
     
-    setParticipationdata(newArr);
+    // Maintain sorted order in search results
+    // (data is already sorted, so filteredArr preserves that order)
+    setParticipationdata(filteredArr);
   }
 
   if (loading) {

@@ -16,6 +16,14 @@
 
 export const COLUMN_CONFIG = [
     {
+      key: '_index',
+      label: '#',
+      visible: true,
+      mobileVisible: true,
+      className: 'Index p-3 text-center font-semibold bg-gray-100',
+      isIndex: true, // Special flag for index column
+    },
+    {
       key: 'User Name',
       label: 'Name',
       visible: true,

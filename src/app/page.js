@@ -61,7 +61,7 @@ export default function Home() {
               <Image src="/assets/gdsc-logo.png" alt="me" width="64" height="64" />
             </div>
             <div className="text flex flex-col justify-start items-start">
-              <p className="text-base">Google Devloper Group On Campus</p>
+              <p className="text-base">Google Developer Group On Campus</p>
               <p className="text-xs"> MLR Institute of Technology</p>
 
             </div>

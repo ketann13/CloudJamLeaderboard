@@ -94,3 +94,4 @@ echo "  View logs: gcloud run logs read cloud-jam-leaderboard --region $REGION"
 echo "  Update CSV: gsutil cp public/data.csv gs://$BUCKET_NAME/data.csv"
 echo ""
 
+

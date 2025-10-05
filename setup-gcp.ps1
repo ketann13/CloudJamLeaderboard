@@ -110,3 +110,4 @@ Write-Host "  Update CSV: gsutil cp public\data.csv gs://$BUCKET_NAME/data.csv"
 Write-Host "  Check status: gcloud run services describe cloud-jam-leaderboard --region $REGION"
 Write-Host ""
 
+

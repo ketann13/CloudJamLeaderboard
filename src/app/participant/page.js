@@ -88,7 +88,7 @@ export default function ParticipantDetail() {
       <nav className='w-full shadow-md bg-white'>
         <div className="bg-gray-900 text-blue-500 w-full m-auto text-center p-2 flex justify-center items-center">
           <div className=""><Image src="/assets/cloudLg.png" alt="cloud" width="40" height="40" /></div>
-          <p className=''>Google Cloud STUDY JAMS 23 - 24</p>
+          <p className=''>Google Cloud Study Jams 25 - 26</p>
         </div>
         <div className="p-3 flex mob:flex-col m-auto max-w-6xl justify-between items-center">
           <div className="logo mob:border-b mob:border-b-gray-200 flex justify-center items-center">

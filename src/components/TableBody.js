@@ -13,7 +13,8 @@ function TableBody({ Participationdata, setParticipationdata }) {
           return (
             <DynamicTableRow 
               key={participant["User Email"] || participant["User Name"] || index} 
-              participant={participant} 
+              participant={participant}
+              rowIndex={index + 1}
             />
           );
         })

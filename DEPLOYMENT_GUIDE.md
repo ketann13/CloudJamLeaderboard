@@ -292,3 +292,4 @@ gcloud run services delete cloud-jam-leaderboard --region us-central1
 - [Cloud Storage Documentation](https://cloud.google.com/storage/docs)
 - Check logs: `gcloud run logs read cloud-jam-leaderboard`
 
+

@@ -156,3 +156,4 @@ For detailed instructions, see: **[DEPLOYMENT_GUIDE.md](./DEPLOYMENT_GUIDE.md)**
 2. Read full guide: [DEPLOYMENT_GUIDE.md](./DEPLOYMENT_GUIDE.md)
 3. GCP Documentation: https://cloud.google.com/run/docs
 
+

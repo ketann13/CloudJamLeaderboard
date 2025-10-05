@@ -3,10 +3,15 @@ import React from "react";
 import Link from 'next/link';
 import { getVisibleColumns } from '@/config/tableConfig';
 
-function DynamicTableRow({ participant }) {
+function DynamicTableRow({ participant, rowIndex }) {
   const visibleColumns = getVisibleColumns();
 
   const renderCell = (col, value) => {
+    // Handle index column (row number)
+    if (col.isIndex) {
+      return rowIndex;
+    }
+
     // Handle action column (View Details button)
     if (col.isAction) {
       const email = encodeURIComponent(participant["User Email"] || '');
