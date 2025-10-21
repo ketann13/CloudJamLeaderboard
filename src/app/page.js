@@ -62,7 +62,7 @@ export default function Home() {
             </div>
             <div className="text flex flex-col justify-start items-start">
               <p className="text-base">Google Developer Group On Campus</p>
-              <p className="text-xs">MLR Institute of Technology</p>
+              <p className="text-xs">Wadia College Of Engineering</p>
 
             </div>
           </div>
